@@ -1,0 +1,31 @@
+.demo-layout-transparent {
+	background: #2980b9; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #2980b9 , #2c3e50); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #2980b9 , #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */       
+}
+
+.content{
+  color: black;
+  padding-top: 5%;
+}
+
+@media only screen and (min-width: 1200px){
+  .content{
+    color:black;
+    padding-top: 2.5%;
+  }
+}
+
+.demo-list-item {
+  width: 600px;
+  color:white;
+}
+
+.white-color{
+	color:white;
+	padding:0px 0px 0px;
+}
+
+h1{
+  text-decoration: underline;
+}

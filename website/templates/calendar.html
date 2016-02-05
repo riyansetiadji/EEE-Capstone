@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Landing Page for EE Capstone Group Spring/Fall 16">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="static/img/favicon.ico">
+    <title>EE Capstone Group</title>
+    <link rel="stylesheet" href={{url_for('bower.static', filename='material-design-lite/material.min.css')}}>
+    <link rel="stylesheet" href={{url_for('bower.static', filename='bootstrap/dist/css/bootstrap.min.css')}}>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="static/css/calendar.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+</head>
+<body>
+<!-- Uses a transparent header that draws on top of the layout's background -->
+
+
+<div class="demo-layout-transparent mdl-layout mdl-js-layout" style="height:100%;width:100%;" >
+  <header class="mdl-layout__header mdl-layout__header--transparent">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">EE Capstone Group</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">About</a>
+        <a class="mdl-navigation__link" href="">People</a>
+        <a class="mdl-navigation__link" href="">Calendar</a>
+        <a class="mdl-navigation__link" href="">Contact</a>
+        <a class="mdl-navigation__link" href="">Sign In</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">EE Capstone Group</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">About</a>
+      <a class="mdl-navigation__link" href="">People</a>
+      <a class="mdl-navigation__link" href="{{url_for('calendar')}}">Calendar</a>
+      <a class="mdl-navigation__link" href="">Contact</a>
+      <a class="mdl-navigation__link" href="">Sign In</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+  	<section class="content">
+    <div class="container">
+        <h2 style="color:white">Important Dates Spring 2016:</h2>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-6">
+             <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+         <thead>
+           <tr>
+             <th class="mdl-data-table__cell--non-numeric">Due Dates</th>
+             <th>Tasks</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td class="mdl-data-table__cell--non-numeric">Feb 5</td>
+             <td>Team establishment form due</td>
+           </tr>
+           <tr>
+             <td class="mdl-data-table__cell--non-numeric">Feb 12</td>
+             <td>Oral presentation time slot selection form due</td>
+           </tr>
+           <tr>
+             <td class="mdl-data-table__cell--non-numeric">Feb 19</td>
+             <td>First written report due</td>
+            </tr>
+           <tr>
+             <td class="mdl-data-table__cell--non-numeric">Mar 14 - 18</td>
+             <td>Oral presentations</td>
+           </tr>
+           <tr>
+             <td class="mdl-data-table__cell--non-numeric">Apr 1</td>
+             <td>Second written report due</td>
+           </tr>
+           <tr>
+             <td class="mdl-data-table__cell--non-numeric">Apr 22</td>
+             <td>Individual semester summary (ABET Assessment Report) due</td>
+           </tr>
+           <tr>
+             <td class="mdl-data-table__cell--non-numeric">Apr 29</td>
+             <td>Final proposal due</td>
+           </tr>
+           <tr>
+             <td class="mdl-data-table__cell--non-numeric">May 2</td>
+             <td>Requests for additional funding due (optional)</td>
+           </tr>
+           <tr>
+             <td class="mdl-data-table__cell--non-numeric">May 2</td>
+             <td>Intra-Team Evaluation due</td>
+           </tr>
+          </tbody>
+             </table>
+            </div>
+            <div class="col-lg-6">
+            <div class="calendar">
+              <iframe src="https://calendar.google.com/calendar/embed?src=9k09kgge2pghsimsbfukt6ifuk%40group.calendar.google.com&ctz=America/Phoenix" style="border: 0" width="600" height="490" frameborder="0" scrolling="no"></iframe>
+            </div>
+            </div>
+          </div>
+        </div>
+		</div>
+	<section>
+  </main>
+</div>
+</body>
+</html>
+<script src={{url_for('bower.static', filename='material-design-lite/material.min.js') }}></script>
+<script src= {{ url_for('bower.static', filename='jquery/dist/jquery.js') }}></script>
+<script src= {{ url_for('bower.static', filename='bootstrap/dist/js/bootstrap.min.js') }}></script>
+
+
