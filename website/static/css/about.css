@@ -1,31 +1,69 @@
 .demo-layout-transparent {
-	background: #2980b9; /* fallback for old browsers */
-	background: -webkit-linear-gradient(to left, #2980b9 , #2c3e50); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to left, #2980b9 , #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */       
+  background: black;
 }
 
 .content{
-  color: black;
+  color: white;
   padding-top: 5%;
+  position:relative;
+    background: #2980b9; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #2980b9 , #2c3e50); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #2980b9 , #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */       
+
+}
+
+.title{
+  margin-bottom: 5%;
+  text-decoration: underline;
+}
+
+.abstract{
+  margin-bottom: 7%;
+}
+
+.technology{
+  padding-top: 7%;
+  padding-bottom: 7%;
+  background: white;
+  color:black;
+}
+
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-xs-15 {
+    width: 20%;
+    float: left;
+}
+@media (min-width: 768px) {
+.col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 1200px) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
 }
 
 @media only screen and (min-width: 1200px){
   .content{
-    color:black;
+    color:white;
     padding-top: 2.5%;
   }
-}
-
-.demo-list-item {
-  width: 600px;
-  color:white;
-}
-
-.white-color{
-	color:white;
-	padding:0px 0px 0px;
-}
-
-h1{
-  text-decoration: underline;
 }

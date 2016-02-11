@@ -27,7 +27,6 @@
       <!-- Navigation -->
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="{{url_for('about')}}">About</a>
-        <a class="mdl-navigation__link" href="">People</a>
         <a class="mdl-navigation__link" href="{{url_for('calendar')}}">Calendar</a>
         <a class="mdl-navigation__link" href="">Contact</a>
         <a class="mdl-navigation__link" href="">Sign In</a>
@@ -37,8 +36,7 @@
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">EE Capstone Group</span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">About</a>
-      <a class="mdl-navigation__link" href="">People</a>
+      <a class="mdl-navigation__link" href="{{url_for('about')}}">About</a>
       <a class="mdl-navigation__link" href="{{url_for('calendar')}}">Calendar</a>
       <a class="mdl-navigation__link" href="">Contact</a>
       <a class="mdl-navigation__link" href="">Sign In</a>
@@ -46,18 +44,35 @@
   </div>
   <main class="mdl-layout__content">
   	<section class="content">
-    <div class="container">
-      <div class="abstract white-color">
-        <center><h1>What are we doing ?</h1></center><br>
-        <p>
-          The mobile computing revolution has jumped forward many electrical engineering disciplines, and signal processing is no exception. IOS “Siri”, Microsoft “Cortana”, and Google voice recognition continue to push the envelope of the audio recognition domain. Similarly is the Shazam application, which finds the source of user recorded music and TV clips for use in identifying new media. An equally challenging problem is identifying that darn song stuck in your head. We propose a repurpose of cutting edge signal processing techniques to allow for identifying humming, whistling, or singing a segment of a tune. Our senior design group will identify current feature extraction techniques for use in human audio recognition. We will then apply machine learning and deep learning neural networks towards matching the audio to a short list of songs. An Android application with server backend will allow a user to record a humming segment and then attempt to match it. It may finally be possible to identify the song stuck in your head, getting it out of your head is another story…
-        </p>
+      <div class="abstract">
+        <div class="container">
+          <center><h1 class="title">Abstract</h1></center>
+          <p>The mobile computing revolution has jumped forward many electrical engineering disciplines, and signal processing is no exception. IOS “Siri”, Microsoft “Cortana”, and Google voice recognition continue to push the envelope of the audio recognition domain. Similarly is the Shazam application, which finds the source of user recorded music and TV clips for use in identifying new media. An equally challenging problem is identifying that darn song stuck in your head. We propose a repurpose of cutting edge signal processing techniques to allow for identifying humming, whistling, or singing a segment of a tune. Our senior design group will identify current feature extraction techniques for use in human audio recognition. We will then apply machine learning and deep learning neural networks towards matching the audio to a short list of songs. An Android application with server backend will allow a user to record a humming segment and then attempt to match it. It may finally be possible to identify the song stuck in your head, getting it out of your head is another story…</p>
+        </div>
       </div>
       <div class="technology">
-
+          <center><h1 class="title">Technology</h1></center>
+          <center>
+          <div class="row">
+            <div class="col-md-15 col-sm-3">
+              <img src="static/img/technology/android_256.png">
+            </div>
+            <div class="col-md-15 col-sm-3">
+              <img src="static/img/technology/github_256.png">
+            </div>
+            <div class="col-md-15 col-sm-3">
+              <img src="static/img/technology/matlab_256.png">
+            </div>
+            <div class="col-md-15 col-sm-3">
+              <img src="static/img/technology/python_256.png">
+            </div>
+            <div class="col-md-15 col-sm-3">
+              <img src="static/img/technology/slack-256.png">
+            </div>
+          </div> 
+          </center> 
       </div>
-		</div>
-	<section>
+    </section>
   </main>
 </div>
 </body>
