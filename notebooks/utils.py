@@ -1,4 +1,4 @@
-import sys, librosa
+import sys, librosa, midi
 from aubio import source, onset
 
 
@@ -114,6 +114,13 @@ def extract_note_events(filename, **kwargs):
 	return pitches
 
 
+def abs_tick_to_time(tick, bpm=None, resolution=None):
+	"""Converts tick to timestamp of note"""
+	if bpm == None or resolution == None:
+		raise ValueError('Invalid Parameters')
+
+	"""(60 sec / 1 min) * (1 min / x beats) * (x beats / 1 tick) * (x ticks) = sec"""
+	return 60.0 * tick / (bpm * resolution)
 
 def time_to_abs_tick(timestamp, bpm=None, resolution=220, time_unit='sec'):
 	"""Converts the elapsed time to the elapsed time in ticks for a given resolution
@@ -150,6 +157,47 @@ def time_to_abs_tick(timestamp, bpm=None, resolution=220, time_unit='sec'):
 
 	return int_round(tick)
 
+def note_events_to_midi_obj(note_events, bpm = None,
+		note_event_time_unit='sec', resolution=220, **kwargs):
+	"""
+	note_events = [(pitch, t_on, t_off) for note in notes]
+	resolution = resolution of midi file
+	note_event_time_unit = time unit (e.g. sec, ms, us) of note_events object
+	bpm = beats per minute
+	
+	OUTPUT:
+	Equivalent midi object for note_events
+	"""
+	tick_relative = False
+	VELOCITY = 50 #note velocity for midi
+	# Pattern contains a list of tracks
+	pattern = midi.Pattern(resolution=resolution, tick_relative=tick_relative)
+	# Instantiate a MIDI Track (contains a list of MIDI events)
+	track = midi.Track(tick_relative=tick_relative)
+	# Append the track to the pattern
+	pattern.append(track)
+
+	for note, t_on, t_off in note_events:
+		# Instantiate a MIDI note on event, append it to the track
+		tick_on = time_to_abs_tick(t_on, bpm=bpm, resolution=resolution,
+				time_unit=note_event_time_unit)
+
+		tick_off = time_to_abs_tick(t_off, bpm=bpm, resolution=resolution,
+				time_unit=note_event_time_unit)
+
+		on = midi.NoteOnEvent(tick=tick_on, velocity=VELOCITY, pitch=note)
+		track.append(on)
+		# Instantiate a MIDI note off event, append it to the track
+		off = midi.NoteOffEvent(tick=tick_off, pitch=note)
+		track.append(off)
+
+	# Add the end of track event, append it to the track
+	eot = midi.EndOfTrackEvent(tick=1)
+	# Print out the pattern
+	pattern.make_ticks_rel()
+
+	return pattern
+
 def get_midi_obj(filename, resolution=220, **kwargs):
 	"""
 	Returns a sequence of midi (note, start-tick, end-tick) tuples.
@@ -167,11 +215,9 @@ def get_midi_obj(filename, resolution=220, **kwargs):
 	2. Convert absolute ticks to relevant, which is more standard
 
 	"""
-	import librosa, midi
+	import librosa
 	"""Constants"""
 	TIME_UNIT = 'sec' #NOTE: we assume that extract_note_events returns note events where the time stamps are in seconds
-	tick_relative = False
-	VELOCITY = 50 #note velocity for midi
 
 
 	#TODO: Parallelize note_extraction and beat prediction
@@ -179,30 +225,9 @@ def get_midi_obj(filename, resolution=220, **kwargs):
 	note_events = extract_note_events(filename, **kwargs)
 	bpm = get_bpm(filename)
 
-	# Pattern contains a list of tracks
-	pattern = midi.Pattern(resolution=resolution, tick_relative=tick_relative)
-	# Instantiate a MIDI Track (contains a list of MIDI events)
-	track = midi.Track(tick_relative=tick_relative)
-	# Append the track to the pattern
-	pattern.append(track)
+	return note_events_to_midi_obj(note_events, bpm=bpm, note_event_time_unit=TIME_UNIT,
+			resolution=resolution)
 
-	for note, t_on, t_off in note_events:
-		# Instantiate a MIDI note on event, append it to the track
-		tick_on = time_to_abs_tick(t_on, bpm=bpm, resolution=resolution, time_unit=TIME_UNIT)
-		tick_off = time_to_abs_tick(t_off, bpm=bpm, resolution=resolution, time_unit=TIME_UNIT)
-
-		on = midi.NoteOnEvent(tick=tick_on, velocity=VELOCITY, pitch=note)
-		track.append(on)
-		# Instantiate a MIDI note off event, append it to the track
-		off = midi.NoteOffEvent(tick=tick_off, pitch=note)
-		track.append(off)
-
-	# Add the end of track event, append it to the track
-	eot = midi.EndOfTrackEvent(tick=1)
-	# Print out the pattern
-	pattern.make_ticks_rel()
-
-	return pattern
 
 
 
@@ -343,6 +368,12 @@ def modified_LCS(A, B):
 	B - predicted sequence
 
 	OUTPUT:
-	(LCS(A, B) - ||A| - |B||)/|A|
+	max(
+	(LCS(A, B) - ||A| - |B||)/|A|,
+	0
+	)
 	"""
-	return (LCS(A, B) - abs(len(A) - len(B))) / float(len(A))
+	return max((LCS(A, B) - abs(len(A) - len(B))) / float(len(A)), 0)
+
+if __name__ == '__main__':
+	print abs_tick_to_time(440, bpm = 100, resolution=220)
