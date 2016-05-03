@@ -14,17 +14,20 @@ class MidiEncodingTransformer(object):
 
 	"""
 	supported_encodings = set(['logIOIr', 'IOIr', 'IOI'])
-	def __init__(self, encoding='logIOIr', n_bins=5, saturation_point = 2):
+	def __init__(self, encoding='logIOIr', n_bins=5, saturation_point = 2, simple_pitch_interval=True):
 		"""
 		n_bins - number of bins that we will be using to represent the data
 		saturation_point - the maximum value allowed for the timing encoding format
 			(e.g. if saturation_point = 2 then an IOIr value of 3 will be rounded down to 2)
+		simple_pitch_interval - if True a relative change of +14 is equivalent to a relative change of +2 in pitch
+				i.e. every pitch change is normalized to a single octave in the range [-12, +12]
 		"""
 		if encoding not in MidiEncodingTransformer.supported_encodings:
 			raise ValueError('%s is not a supported encoding' % encoding)        
 
 		self.encoding = encoding
 		self.n_bins = n_bins
+		self.simple_pitch_interval = simple_pitch_interval
 
 		#we will be using 's' to refer to the saturation point as well when creating the bins
 		self.saturation_point = s = saturation_point
@@ -46,7 +49,7 @@ class MidiEncodingTransformer(object):
 		pitches, onsets, offsets = zip(*note_events)
 		note_times = (onsets, offsets)
 
-		rel_pitches = MidiEncodingTransformer.get_relative_pitches(pitches)
+		rel_pitches = MidiEncodingTransformer.get_relative_pitches(pitches, self.simple_pitch_interval)
 
 		IOI = MidiEncodingTransformer.get_IOI(note_times)
 
@@ -134,11 +137,22 @@ class MidiEncodingTransformer(object):
 			return array[idx]
 
 	@staticmethod
-	def get_relative_pitches(pitches):
+	def get_relative_pitches(pitches, simple_pitch_interval):
 		"""Given a list of absolute pitches, returns the relative pitche changes"""
 		rel_pitches = []
 		for i, p in enumerate(pitches[:-1]):
-			rel_pitches.append(pitches[i + 1] - p)
+			real_interval = pitches[i + 1] - p
+			if not simple_pitch_interval:
+				rel_pitches.append(real_interval)
+				continue
+
+			#here we quantize into a single octave
+			if real_interval < -12:
+				rel_pitches.append(-(real_interval % 12) - real_interval)
+			elif real_interval > 12:
+				rel_pitches.append(real_interval % 12)
+			else:
+				rel_pitches.append(real_interval)
 
 		return rel_pitches
 

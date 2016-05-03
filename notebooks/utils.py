@@ -297,7 +297,7 @@ def midi_obj_to_waveform(midi_obj, **kwargs):
 
 	return (y, sr)
 
-def midi_to_note_events(midi_obj):
+def midi_to_note_events(midi_obj, verbose=True):
 	"""
 	INPUT:
 	python-midi object
@@ -307,33 +307,51 @@ def midi_to_note_events(midi_obj):
 	"""
 	import midi
 	from operator import itemgetter
+	from collections import Counter, deque, defaultdict
 
 	#we want absolute on and off tick
 	midi_obj.make_ticks_abs()
 
 	#we need to match each NoteOnEvent with the note off event
-	active_notes = {} #maps pitch to t_on
+	active_notes = defaultdict(deque) #maps pitch to list of onsets, fifo queue
 
-	event_set = set() #note, t_on, t_off
+	note_events = [] #note, t_on, t_off
 
 	is_on_note = lambda x: type(x) is midi.NoteOnEvent
 	is_off_note = lambda x: type(x) is midi.NoteOffEvent
 
-	for track in midi_obj:
+	for track_num, track in enumerate(midi_obj):
+		"""
 		for event in track:
 			if is_on_note(event):
-				assert event.get_pitch() not in active_notes
-				active_notes[event.get_pitch()] = event.tick
+				#add tick to queue of onsets
+				active_notes[event.get_pitch()].append(event.tick)
 			elif is_off_note(event):
-				assert event.get_pitch() in active_notes
-				t_on = active_notes[event.get_pitch()]
+
+				assert event.get_pitch() in active_notes and len(active_notes[event.get_pitch()]) > 0
+				t_on = active_notes[event.get_pitch()].popleft() #get the earliest onset for this note
 				t_off = event.tick
 				new_note_event = (event.get_pitch(), t_on, t_off)
-				event_set.add(new_note_event)
+				note_events.append(new_note_event)
 
-				del active_notes[event.get_pitch()]
+		assert all(len(v) == 0 for k, v in active_notes.iteritems())
+		"""
+		onset_events = defaultdict(deque)
+		offset_events = defaultdict(deque)
+		for event in track:
+			if is_on_note(event):
+				onset_events[event.get_pitch()].append(event.tick)
+			elif is_off_note(event):
+				offset_events[event.get_pitch()].append(event.tick)
 
-	note_events = list(event_set)
+		assert all(len(onset_events[x]) == len(offset_events[x]) for x in onset_events.keys()) and len(onset_events) == len(offset_events)
+
+		for pitch in onset_events:
+			for t_on, t_off in zip(onset_events[pitch], offset_events[pitch]):
+				if t_on < t_off:
+					note_events.append((pitch, t_on, t_off))
+				elif verbose:
+					print 'Invalid note event (%d, %d, %d)' % (pitch, t_on, t_off)
 
 	#sorting on start time (i.e. the value at index 1)
 	note_events.sort(key=itemgetter(1))
