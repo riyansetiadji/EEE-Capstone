@@ -1,2 +1,5 @@
 .DS_Store
 song-files/
+*.pyc
+*.mp3
+*.out
