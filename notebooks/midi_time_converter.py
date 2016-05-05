@@ -84,12 +84,18 @@ class MidiTimeConverter(object):
 		tick_tempo_map = self.get_tick_tempo_map()
 		
 		#Index of preceding set_tempo_event
-		prec_tick_idx = bisect.bisect_left(abs_tempo_ticks, tick_num) - 1
+		if tick_num > abs_tempo_ticks[-1]:
+			#Case where we use the final set tempo event in the midi file
+			prec_tick_idx = len(abs_tempo_ticks) - 1
+		else:
+			#Case where we are somewhere in the middle, and can perform a binary search to find the correct index
+			prec_tick_idx = bisect.bisect_right(abs_tempo_ticks, tick_num) - 1
+
 		prec_tick_val = abs_tempo_ticks[prec_tick_idx]
 
 		base_time = tick_time_map[prec_tick_val]
 		curr_tempo = tick_tempo_map[prec_tick_val]
-		tick_offset = prec_tick_val - tick_num
+		tick_offset =  tick_num - prec_tick_val
 		time_offset = tick_offset * 60.0 / (curr_tempo * self.resolution)
 
 		return base_time + time_offset
@@ -98,5 +104,9 @@ class MidiTimeConverter(object):
 if __name__ == '__main__':
 	midi_obj = midi.read_midifile('midi_files/hey_jude.mid')
 	m = MidiTimeConverter(midi_obj)
+	
+	print m.time_at_tick(0)
+	print m.time_at_tick(65000)
+	print m.time_at_tick(75000)
 
-	print m.time_at_tick(64500)
+
