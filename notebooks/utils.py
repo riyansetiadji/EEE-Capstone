@@ -1,4 +1,5 @@
 import sys, librosa, midi
+from operator import itemgetter
 from aubio import source, onset
 
 
@@ -306,7 +307,6 @@ def midi_to_note_events(midi_obj, verbose=True):
 	[(note, on_tick, off_tick) for note in notes]
 	"""
 	import midi
-	from operator import itemgetter
 	from collections import Counter, deque, defaultdict
 
 	#we want absolute on and off tick
@@ -393,5 +393,112 @@ def modified_LCS(A, B):
 	"""
 	return max((LCS(A, B) - abs(len(A) - len(B))) / float(len(A)), 0)
 
+def midi_to_note_streams(midi_obj, verbose=True):
+	"""
+	INPUT:
+	midi_obj - python_midi object
+
+	OUTPUT:
+	[stream for stream in midi_obj]
+	where stream is a sequence of (note, t_on, t_off) tuples, with t_on and t_off in units of seconds
+
+	Routine Descriptions:
+	Converts the midi object into a a list of note streams with timestamps in seconds (rather than midi ticks)
+	"""
+	from midi_time_converter import MidiTimeConverter
+	from collections import Counter, deque, defaultdict
+	tick_converter = MidiTimeConverter(midi_obj)
+	
+	streams = []
+
+
+	#Helper functions
+	is_on_note = lambda x: type(x) is midi.NoteOnEvent
+	is_off_note = lambda x: type(x) is midi.NoteOffEvent
+
+	#we need to use absolute ticks to get the absolute timestamps
+	midi_obj.make_ticks_abs()
+
+	for track_num, track in enumerate(midi_obj):
+		note_events = [] #(note, t_on, t_off)
+		onset_events = defaultdict(deque)
+		offset_events = defaultdict(deque)
+		for event in track:
+			if is_on_note(event):
+				onset_events[event.get_pitch()].append(event.tick)
+			elif is_off_note(event):
+				offset_events[event.get_pitch()].append(event.tick)
+
+		assert all(len(onset_events[x]) == len(offset_events[x]) for x in onset_events.keys())\
+				and len(onset_events) == len(offset_events)
+
+		for pitch in onset_events:
+			for tick_on, tick_off in zip(onset_events[pitch], offset_events[pitch]):
+				#convert ticks to time stamps
+				t_on = tick_converter.time_at_tick(tick_on)
+				t_off = tick_converter.time_at_tick(tick_off)
+				if t_on < t_off:
+					note_events.append((pitch, t_on, t_off))
+				elif verbose:
+					print 'Invalid note event (%d, %d, %d)' % (pitch, t_on, t_off)
+
+		#sorting on start time (i.e. the value at index 1)
+		note_events.sort(key=itemgetter(1))
+
+		#if we have any note events, add this as a stream
+		if note_events:
+			streams.append(note_events)
+
+	return streams
+
+def separate_stream(note_stream, silence_threshold=1.5):
+	"""Splits a stream into multiple streams based on the silence threshold criteria"""
+	parsed_streams = []
+	curr_stream = [note_stream[0]]
+	for note_event in note_stream[1:]:
+
+		(note, t_on, t_off) = note_event
+		_, _, t_off_prev = curr_stream[-1]
+
+		if (t_on - t_off_prev) > silence_threshold:
+			parsed_streams.append(curr_stream)
+			curr_stream = []
+
+		curr_stream.append(note_event)
+
+	#add the final stream
+	parsed_streams.append(curr_stream)
+
+	return parsed_streams
+
+
+
+def separate_streams(note_streams, silence_threshold=1.5):
+	"""
+	INPUT:
+	note_streams - a list of note streams, where each note stream is of the form: (note, t_on, t_off)
+	silence_threshold - how many seconds of silence can exist before a stream is split into two streams
+
+	OUTPUT:
+	note_streams - a list where the note streams have been split based on periods of silence
+	(i.e. streams in which there is no period greater than `silence_threshold` between any two adjacent note events)
+	"""
+	parsed_streams = []
+	for s in note_streams:
+		parsed_streams.extend(separate_stream(s, silence_threshold=silence_threshold))
+
+	return parsed_streams
+
+
 if __name__ == '__main__':
-	print abs_tick_to_time(440, bpm = 100, resolution=220)
+	import midi
+	"""
+	midi_obj = midi.read_midifile('midi_files/hey_jude.mid')
+
+	print midi_to_note_streams(midi_obj)
+	"""
+
+
+	s1 = [(1, 1.5, 2), (1, 1.7, 3), (1, 4, 4.5), (1, 6.6, 7), (1, 7.1, 8), (1, 10, 11)]
+	from pprint import pprint
+	pprint(separate_stream(s1))
