@@ -1,5 +1,7 @@
 .DS_Store
 song-files/
+app/upload/
+app/__pycache__/
 *.pyc
 *.mp3
 *.out

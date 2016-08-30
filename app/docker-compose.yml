@@ -3,4 +3,4 @@ eecapstone:
     ports:
     - "8090:8090"
     volumes:
-    - .:/app/glados/
+    - .:/app/eecapstone/
