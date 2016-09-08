@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EEE Capstone</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css')}}">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>   
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Mono:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mater.css') }}">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/1.11.2.jquery.min.js')}}"></script>    
+</head>
+
+<body mt-navigation-type="vertical" mt-nav-placement="left" theme-layout="wide-layout" theme-bg="bg1" >
+
+
+    <div id="mtapp-wrapper" class="mt-hide-lpanel" mt-device-type="desktop">
+        <header id="mt-header" mt-lpanel-effect="shrink">
+            <div class="mt-left-header">
+        <a  class="nav-expand" href="#"><img src="images/1.jpg" class="img-circle"></a>
+                <a class="brandname" href="#"><i class="fa fa-music"></i> <span><span class="text-slim">EEE</span> Capstone</span></a>
+                <span class="mt-sidebar-toggle"><a href="#"></a></span>
+            </div>
+        </header>
+        <div id="mtapp-container" mt-color-type="lpanel-bg2" mt-lpanel-effect="shrink">
+            <aside id="mt-left-panel" mt-position-type="absolute">
+              <ul class="nav panel-list">
+              <li class="nav-level">Navigation</li>
+                <li>
+                  <a href="grid.html" class="rippler rippler-default">
+                    <i class="fa fa-home"></i>
+                    <span class="menu-text">Dashboard</span>
+                    <span class="selected"></span>
+                  </a>
+                </li>
+              <li>
+                <a href="stats-widgets.html" class="rippler rippler-default">
+                <i class="fa fa-cloud"></i>
+                  <span class="menu-text">Widgets & Stats</span>
+                  <span class="selected"></span>
+                </a>
+              </li>
+              </ul>
+            </aside>
+            <section id="main-content">
+        <div class="content-title">
+          <h3 class="main-title">Dashboard</h3>
+          <span>Welcome to your dashboard</span>
+        </div>
+                <div class="inner-content">
+                  
+
+    </div>
+    
+    <div class="clearfix"></div>
+    
+    <div class="row">
+
+      <div class="col-md-4">
+        <div class="ui-x">
+      <!-- Player -->
+      <div class="ui-player">
+        <!-- Icon -->
+        <div class="ui-icon clearfix">  
+          <!-- Random -->
+          <a href="#"><i class="fa fa-random"></i></a>
+          <!-- Backward -->
+          <a href="#"><i class="fa fa-backward"></i></a>
+          <!-- Play -->
+          <a id="audio-button" title="audio-button" class="ui-play"><i class="fa fa-play"></i></a>
+          <!-- Forward -->
+          <a href="#"><i class="fa fa-forward"></i></a>
+          <!-- Repeat -->
+          <a href="#"><i class="fa fa-repeat"></i></a>
+
+          <audio style="display: none;" id="audio_player" src="{{ url_for('static', filename='songs/123.mp3')}}" preload="auto" controls></audio>
+
+        </div>
+        <!-- Progress -->
+        <div class="ui-progress clearfix">
+          <!-- Heading -->
+          <h3>A Beautiful Mess, <span>Jason Mraz</span></h3> 
+        </div>
+      </div>
+        </div>
+      </div>
+
+    </div>      
+          
+          
+                </div>  
+            </section>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        console.log("Ready");
+        var playing = false;
+        $('a#audio-button').click(function(){
+          console.log("Pressed");
+          $(this).toggleClass("down");
+          if(playing == false){
+            document.getElementById('audio_player').play();
+            playing=true;
+            console.log("Playing");
+          } else{
+            document.getElementById('audio_player').pause();
+            playing = false;
+            console.log("Paused");
+          }
+        });
+      });
+    </script>
+
+</body>
+</html>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/mater.js')}}"></script>
+
+    <script>
+    $(".ajax-menu").click(function(){
+        $("#main-content").load($(this).attr("href"));
+        return false;
+    });
+    </script>
+    <link href="{{ url_for('static', filename='js/plugins/jqvmap/jqvmap.css')}}" media="screen" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/flot/jquery.flot.min.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/flot/jquery.flot.resize.min.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/sparklines.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/page-specific/index.js')}}"></script>

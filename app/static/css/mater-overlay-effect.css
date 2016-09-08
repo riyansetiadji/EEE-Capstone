@@ -1,0 +1,37 @@
+/*################ Theme Header With Content Overlay Effect Start #####################*/
+#mt-header[mt-lpanel-effect="overlay"] .mt-right-header[mt-position-type="fixed"] {
+  margin-left:  0px;
+  padding-right: 0px;
+}
+#mt-header[mt-lpanel-effect="overlay"].mt-minimized-lpanel .mt-right-header[mt-position-type="fixed"] {
+    margin-left:  50px;
+    padding-right: 50px;
+}
+#mt-header[mt-lpanel-effect="overlay"] .mt-right-header[mt-position-type="relative"] {
+  margin-left: 0px;
+}
+#mt-header.mt-minimized-lpanel[mt-lpanel-effect="overlay"] .mt-right-header[mt-position-type="relative"] {
+  margin-left: 50px;   
+}
+#mt-header[mt-lpanel-effect="overlay"] .mt-right-header[mt-position-type="relative"] .mt-sidebar-toggle a:after {
+    margin-left:  230px;
+	
+}
+#mt-header.mt-minimized-lpanel[mt-lpanel-effect="overlay"] .mt-right-header[mt-position-type="relative"] .mt-sidebar-toggle a:after {
+     margin-left: 0px;
+}
+#mt-header[mt-lpanel-effect="overlay"] .mt-right-header[mt-position-type="fixed"] .mt-sidebar-toggle a:after {
+  margin-left:  230px;
+}
+#mt-header.mt-minimized-lpanel[mt-lpanel-effect="overlay"] .mt-right-header[mt-position-type="fixed"] .mt-sidebar-toggle a:after {
+    margin-left:  0px; 
+}
+
+
+#mtapp-container[mt-lpanel-effect="overlay"] #main-content{
+	 margin-left: 50px;
+}
+#mtapp-container[mt-lpanel-effect="overlay"].mt-minimized-lpanel #main-content{
+	 margin-left: 50px;
+}
+/*################ Theme Header With Content Overlay Effect Close #####################*/

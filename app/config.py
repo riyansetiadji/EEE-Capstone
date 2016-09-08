@@ -12,5 +12,5 @@ class DevelopmentConfig(Config):
     """
     DEBUG = True
     UPLOAD_FOLDER = './upload'
-    ALLOWED_EXTENSIONS = set(['txt', 'png', 'jpg', 'jpeg', 'wav', 'mp3'])
+    ALLOWED_EXTENSIONS = set(['txt', 'png', 'jpg', 'jpeg', 'wav', 'mp3', 'mid'])
     MAX_CONTENT_LENGTH = 10 * 1024 * 1024

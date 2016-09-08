@@ -1,0 +1,167 @@
+
+/*#################### Right navigation Style Start Here ##################################*/
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-left-header,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-left-header {
+  right: 0;
+}
+
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-right-header,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-right-header  {
+  margin-left: 0;
+  margin-right: 230px;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"].left-navbar,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"].left-navbar {
+  float: right;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .right-navbar,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .right-navbar {
+  float: left;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-sidebar-toggle a:after,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-sidebar-toggle a:after {
+  right: 0;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .left-navbar li:last-child,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .left-navbar li:last-child {
+  padding-right: 50px;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .left-navbar li:first-child,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .left-navbar li:first-child {
+  padding-right: 0px;
+}
+
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] #mt-left-panel,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] #mt-left-panel {
+  right: 0;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] #main-content,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] #main-content {
+  margin-left: 0;
+  margin-right: 230px;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] #styleSelector,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] #styleSelector {
+  left: -230px;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .selector-toggle > a,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .selector-toggle > a {
+  border-radius: 0 4px 4px 0;
+  left: 228px;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] #styleSelector.open,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] #styleSelector.open {
+  right: 0;
+  left: 0;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .selector-toggle > a:before,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .selector-toggle > a:before {
+    content: "\f101";
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .open .selector-toggle > a:before,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .open .selector-toggle > a:before {
+    content: "\f100";
+}
+ 
+ 
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] #mt-left-panel .panel-list > li.mt-has-menu > ul > li.mt-has-menu > ul > li > a span.menu-text,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] #mt-left-panel .panel-list > li.mt-has-menu > ul > li.mt-has-menu > ul > li > a span.menu-text {
+    padding-left: auto;
+    padding-right: 25px;
+}
+ 
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] #mt-left-panel .panel-list > li.mt-has-menu > ul > li.mt-has-menu > ul > li > ul > li > a span.menu-text,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] #mt-left-panel .panel-list > li.mt-has-menu > ul > li.mt-has-menu > ul > li > ul > li > a span.menu-text {
+  padding-left: auto;
+  padding-right: 35px;
+ 
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] #mt-header.mt-minimized-lpanel > .mt-right-header,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] #mt-header.mt-minimized-lpanel > .mt-right-header {
+  margin-left: 0px;
+  margin-right: 50px;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #main-content,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #main-content  {
+  margin-left: 0px;
+  margin-right: 50px;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel {
+  direction: rtl;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li:hover > a span.menu-text, 
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li:focus > a span.menu-text,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li:hover > a span.menu-text, 
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li:focus > a span.menu-text {
+  right: 52px;
+  left:auto;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list li:hover a .label,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list li:hover a .label {
+  left: 5px;
+  right: auto;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li:hover > a, 
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li:focus > a,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li:hover > a, 
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li:focus > a {
+  border-radius: 4px 0px 0px 4px;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu:hover > ul.mt-sub-menu, 
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu:focus > ul.mt-sub-menu,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu:hover > ul.mt-sub-menu, 
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu:focus > ul.mt-sub-menu  {
+  left: auto;
+  right: 50px;
+}
+ 
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu li.mt-has-menu > a:after,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu li.mt-has-menu > a:after {
+    float: left;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu li.mt-has-menu:hover > a:after,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu li.mt-has-menu:focus > a:after,body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu li.mt-has-menu:hover > a:after,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu li.mt-has-menu:focus > a:after  {
+    float: left;
+}
+ 
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu > ul.mt-sub-menu > li > a span.menu-text:before,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu > ul.mt-sub-menu > li > a span.menu-text:before {
+    font-family: FontAwesome;
+    content: "\f0d9";
+    font-size: 14px;
+    position: relative;
+    float: right;
+    left: 4px;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu > ul.mt-sub-menu > li.mt-has-menu > ul.mt-sub-menu > li > a span.menu-text:before,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu > ul.mt-sub-menu > li.mt-has-menu > ul.mt-sub-menu > li > a span.menu-text:before {
+    font-family: FontAwesome;
+    content: "\f0d9";
+    font-size: 14px;
+    position: relative;
+    float: right;
+    left: 4px;
+}
+ 
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu > ul > li.mt-has-menu > ul > li > a span.menu-text,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu > ul > li.mt-has-menu > ul > li > a span.menu-text {
+  padding-left: auto;
+  padding-right: 0px;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu > ul.mt-sub-menu > li.mt-has-menu > ul.mt-sub-menu > li.mt-has-menu > ul.mt-sub-menu > li > a span.menu-text:before,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu > ul.mt-sub-menu > li.mt-has-menu > ul.mt-sub-menu > li.mt-has-menu > ul.mt-sub-menu > li > a span.menu-text:before {
+  font-family: FontAwesome;
+  content: "\f0d9";
+  font-size: 14px;
+  position: relative;
+  float: right;
+  left: 4px;
+}
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="desktop"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu > ul > li.mt-has-menu > ul > li > ul > li > a span.menu-text,
+body[mt-nav-placement="right"] #mtapp-wrapper[mt-device-type="tablet"] .mt-minimized-lpanel #mt-left-panel .panel-list > li.mt-has-menu > ul > li.mt-has-menu > ul > li > ul > li > a span.menu-text {
+  padding-left: auto;
+  padding-right: 0px;
+}
+/*#################### Right Sidebar Style Close Here ##################################*/

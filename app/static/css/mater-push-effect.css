@@ -1,0 +1,42 @@
+/*################ Theme Header With Content Push Effect Start #####################*/
+#mt-header[mt-lpanel-effect="push"] .mt-right-header[mt-position-type="fixed"] {
+    margin-left: 230px;
+    margin-right: -230px;
+	padding-right:0px
+}
+#mt-header.mt-minimized-lpanel[mt-lpanel-effect="push"] .mt-right-header[mt-position-type="fixed"] {
+     margin-left: 50px;
+	margin-right: 0px;
+	padding-right:50px
+}
+#mt-header[mt-lpanel-effect="push"] .mt-right-header[mt-position-type="relative"] {
+    margin-left: 230px;
+    margin-right: -230px;
+}
+#mt-header[mt-lpanel-effect="push"].mt-minimized-lpanel .mt-right-header[mt-position-type="relative"] {
+    margin-left: 50px;
+	margin-right: 0px;
+}
+#mt-header[mt-lpanel-effect="push"] .mt-right-header[mt-position-type="relative"] .mt-sidebar-toggle a:after {
+ margin-left:  0px;
+}
+#mt-header.mt-minimized-lpanel[mt-lpanel-effect="push"] .mt-right-header[mt-position-type="relative"] .mt-sidebar-toggle a:after {
+ margin-left:  0px;
+}
+#mt-header[mt-lpanel-effect="push"] .mt-right-header[mt-position-type="fixed"] .mt-sidebar-toggle a:after {
+    margin-left:  0px;
+}
+#mt-header.mt-minimized-lpanel[mt-lpanel-effect="push"] .mt-right-header[mt-position-type="fixed"] .mt-sidebar-toggle a:after {
+    margin-left:  0px;
+}
+
+#mtapp-container[mt-lpanel-effect="push"] #main-content{
+	margin-left: 230px;
+	margin-right: -230px;
+}
+#mtapp-container[mt-lpanel-effect="push"].mt-minimized-lpanel #main-content{
+	 margin-left: 50px;
+     margin-right: 0px;	 
+}
+
+/*################ Theme Header With Content Push Effect Close #####################*/

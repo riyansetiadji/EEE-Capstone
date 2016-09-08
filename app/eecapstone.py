@@ -11,8 +11,16 @@ app.config.from_object(config.DevelopmentConfig)
 def index():
     return "Hello World"
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('index.html')
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
+    """
+    Basic Upload File Test
+    """
+    #POST
     if request.method == 'POST':
         #Check if the post request has the file part
         if 'file' not in request.files:
@@ -32,9 +40,12 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             flash('Upload Successful', "success")
-            return render_template('upload.html')
-    
+            stream = app_methods.convert_wav_to_stream("upload/"+file.filename)
+            midi = app_methods.convert_stream_to_midi(stream)
+            return render_template('upload.html', midi=midi)
+    #GET
     if request.method == 'GET':
         return render_template('upload.html')
+
 if __name__ == "__main__":
     app.run()
