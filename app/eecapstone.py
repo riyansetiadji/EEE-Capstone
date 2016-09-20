@@ -41,6 +41,8 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             flash('Upload Successful', "success")
             stream = app_methods.convert_wav_to_stream("upload/"+file.filename)
+            if stream == "Unable to convert WAV file to music21 stream":
+                return render_template('upload.html', midi=stream)
             midi = app_methods.convert_stream_to_midi(stream)
             return render_template('upload.html', midi=midi)
     #GET
