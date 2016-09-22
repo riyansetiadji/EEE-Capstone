@@ -7,11 +7,8 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.config.from_object(config.DevelopmentConfig)
 
-@app.route('/')
-def index():
-    return "Hello World"
-
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET'])
+@app.route('/', methods=['GET'])
 def dashboard():
     return render_template('index.html')
 
